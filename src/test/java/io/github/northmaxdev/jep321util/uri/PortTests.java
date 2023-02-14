@@ -18,7 +18,7 @@ class PortTests {
     class Of {
 
         @ParameterizedTest
-        @ValueSource(ints = {0, 65536, 443, 80, 8080})
+        @ValueSource(ints = {0, 65535, 443, 80, 8080})
         @DisplayName("Does not throw on values inside the allowed range")
         void acceptsValuesInsideRange(int value) {
             assertDoesNotThrow(() -> Port.of(value));
