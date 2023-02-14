@@ -36,7 +36,7 @@ public enum HTTPScheme {
      */
     public static Optional<HTTPScheme> instanceOf(String s) {
         return Stream.of(SECURE, UNSECURE)
-                .filter(instance -> Objects.equals(instance.strForm, s))
+                .filter(scheme -> Objects.equals(scheme.strForm, s))
                 .findFirst();
     }
 
@@ -53,6 +53,7 @@ public enum HTTPScheme {
     /**
      * Converts this instance to a string value. Both values are lowercase as per
      * <a href=https://www.rfc-editor.org/rfc/rfc3986#section-3.1>RFC 3986 section 3.1</a>.
+     *
      * @return the value {@code "https"} for {@link #SECURE} or the value {@code "http"} for {@link #UNSECURE}.
      */
     @Override
