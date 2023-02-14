@@ -10,12 +10,18 @@ public enum HTTPScheme {
     /**
      * The instance that represents HTTPS.
      */
-    SECURE,
+    SECURE("https"),
 
     /**
      * The instance that represents HTTP.
      */
-    UNSECURE;
+    UNSECURE("http");
+
+    private final String strForm;
+
+    HTTPScheme(String strForm) {
+        this.strForm = strForm;
+    }
 
     /**
      * Static factory method to fetch the corresponding instance for the given string value, e.g. a value of
@@ -47,6 +53,6 @@ public enum HTTPScheme {
      */
     @Override
     public String toString() {
-        throw new UnsupportedOperationException();
+        return strForm;
     }
 }
