@@ -37,7 +37,7 @@ public enum HTTPScheme {
      * @return {@link #SECURE} if {@code true}, {@link #UNSECURE} if {@code false}
      */
     public static HTTPScheme valueOf(boolean value) {
-        throw new UnsupportedOperationException();
+        return value ? SECURE : UNSECURE;
     }
 
     /**
