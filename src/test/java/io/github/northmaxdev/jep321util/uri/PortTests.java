@@ -10,7 +10,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-// TODO: Display name generator
 class PortTests {
 
     @Nested
@@ -33,7 +32,6 @@ class PortTests {
     }
 
     @Test
-    // TODO: Display name generator
     void equalsAndHashCode() {
         EqualsVerifier.forClass(Port.class)
                 .verify();

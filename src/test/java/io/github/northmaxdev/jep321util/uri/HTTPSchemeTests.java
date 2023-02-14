@@ -11,11 +11,9 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-// TODO: Display name generator
 class HTTPSchemeTests {
 
     @Nested
-    // TODO: Display name generator
     class ToString {
 
         @Test
