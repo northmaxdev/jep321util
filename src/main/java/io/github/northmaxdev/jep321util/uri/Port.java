@@ -33,8 +33,8 @@ public final class Port {
      * @throws IllegalArgumentException if the given integer value is outside the allowed range
      */
     public static Port of(int value) throws IllegalArgumentException {
-        if (value < 0 || value > 65535) {
-            throw new IllegalArgumentException("Invalid value: " + value);
+        if (value < MIN_VALUE || value > MAX_VALUE) {
+            throw new IllegalArgumentException("Port value must be within [" + MIN_VALUE + ", " + MAX_VALUE + ']');
         }
         return new Port(value);
     }
