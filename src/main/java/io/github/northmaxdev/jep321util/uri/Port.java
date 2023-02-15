@@ -27,6 +27,15 @@ public final class Port {
     }
 
     /**
+     * Returns the port's numeric value.
+     *
+     * @return an integer that is guaranteed to be within [0, 65535]
+     */
+    public int getValue() {
+        return value;
+    }
+
+    /**
      * Checks whether this port is equal to the given object.
      *
      * @param obj an arbitrary object, {@code null} is allowed
