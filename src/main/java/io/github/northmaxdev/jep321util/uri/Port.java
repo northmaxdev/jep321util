@@ -3,6 +3,8 @@ package io.github.northmaxdev.jep321util.uri;
 /**
  * Models the port subcomponent of a URI authority as per
  * <a href=https://www.rfc-editor.org/rfc/rfc3986#section-3.2.3>RFC 3986 section 3.2.3</a>.
+ * The range of valid port numbers is defined by
+ * <a href=https://www.rfc-editor.org/rfc/rfc6335#section-6>RFC 6335 section 6</a>.
  */
 public final class Port {
 
