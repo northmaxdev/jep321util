@@ -43,7 +43,12 @@ public final class Port {
      */
     @Override
     public boolean equals(Object obj) {
-        throw new UnsupportedOperationException();
+        if (!(obj instanceof Port)) {
+            return false;
+        }
+
+        Port other = (Port) obj;
+        return this.value == other.value;
     }
 
     /**
@@ -53,7 +58,7 @@ public final class Port {
      */
     @Override
     public int hashCode() {
-        throw new UnsupportedOperationException();
+        return Integer.hashCode(value);
     }
 
     /**
@@ -63,6 +68,6 @@ public final class Port {
      */
     @Override
     public String toString() {
-        throw new UnsupportedOperationException();
+        return Integer.toString(value);
     }
 }
