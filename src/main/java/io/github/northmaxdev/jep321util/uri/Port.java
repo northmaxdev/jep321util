@@ -8,6 +8,21 @@ package io.github.northmaxdev.jep321util.uri;
  */
 public final class Port {
 
+    private static final int MIN_VALUE = 0;
+    private static final int MAX_VALUE = 65535;
+
+    /**
+     * A port with the smallest value allowed as per
+     * <a href=https://www.rfc-editor.org/rfc/rfc6335#section-6>RFC 6335 section 6</a>, which is {@value #MIN_VALUE}.
+     */
+    public static final Port MIN = new Port(MIN_VALUE);
+
+    /**
+     * A port with the highest value allowed as per
+     * <a href=https://www.rfc-editor.org/rfc/rfc6335#section-6>RFC 6335 section 6</a>, which is {@value MAX_VALUE}.
+     */
+    public static final Port MAX = new Port(MAX_VALUE);
+
     private final int value;
 
     /**
