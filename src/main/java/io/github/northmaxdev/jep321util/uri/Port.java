@@ -6,6 +6,8 @@ package io.github.northmaxdev.jep321util.uri;
  */
 public final class Port {
 
+    private final int value;
+
     /**
      * Primary static factory method.
      *
@@ -14,7 +16,14 @@ public final class Port {
      * @throws IllegalArgumentException if the given integer value is outside the allowed range
      */
     public static Port of(int value) throws IllegalArgumentException {
-        throw new UnsupportedOperationException();
+        if (value < 0 || value > 65535) {
+            throw new IllegalArgumentException("Invalid value: " + value);
+        }
+        return new Port(value);
+    }
+
+    private Port(int value) {
+        this.value = value;
     }
 
     /**
