@@ -2,9 +2,9 @@ package io.github.northmaxdev.jep321util.uri;
 
 /**
  * Models the port subcomponent of a URI authority as per
- * <a href=https://www.rfc-editor.org/rfc/rfc3986#section-3.2.3>RFC 3986 section 3.2.3</a>.
+ * <a href="https://www.rfc-editor.org/rfc/rfc3986#section-3.2.3">RFC 3986 section 3.2.3</a>.
  * The range of valid port numbers is defined by
- * <a href=https://www.rfc-editor.org/rfc/rfc6335#section-6>RFC 6335 section 6</a>.
+ * <a href="https://www.rfc-editor.org/rfc/rfc6335#section-6">RFC 6335 section 6</a>.
  */
 public final class Port {
 
@@ -13,13 +13,13 @@ public final class Port {
 
     /**
      * A port with the smallest value allowed as per
-     * <a href=https://www.rfc-editor.org/rfc/rfc6335#section-6>RFC 6335 section 6</a>, which is {@value #MIN_VALUE}.
+     * <a href="https://www.rfc-editor.org/rfc/rfc6335#section-6">RFC 6335 section 6</a>, which is {@value #MIN_VALUE}.
      */
     public static final Port MIN = new Port(MIN_VALUE);
 
     /**
      * A port with the highest value allowed as per
-     * <a href=https://www.rfc-editor.org/rfc/rfc6335#section-6>RFC 6335 section 6</a>, which is {@value MAX_VALUE}.
+     * <a href="https://www.rfc-editor.org/rfc/rfc6335#section-6">RFC 6335 section 6</a>, which is {@value MAX_VALUE}.
      */
     public static final Port MAX = new Port(MAX_VALUE);
 
