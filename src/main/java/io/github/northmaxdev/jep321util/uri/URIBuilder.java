@@ -125,6 +125,62 @@ public final class URIBuilder {
     }
 
     /**
+     * {@link #pathSegment(String)} overload for values of type {@code byte}. This is useful for working with RESTful
+     * web APIs.
+     *
+     * @param b a {@code byte} value
+     * @return this builder
+     * @see #pathSegment(short)
+     * @see #pathSegment(int)
+     * @see #pathSegment(long)
+     */
+    public URIBuilder pathSegment(byte b) {
+        return pathSegment(Byte.toString(b));
+    }
+
+    /**
+     * {@link #pathSegment(String)} overload for values of type {@code short}. This is useful for working with RESTful
+     * web APIs.
+     *
+     * @param s a {@code short} value
+     * @return this builder
+     * @see #pathSegment(byte)
+     * @see #pathSegment(int)
+     * @see #pathSegment(long)
+     */
+    public URIBuilder pathSegment(short s) {
+        return pathSegment(Short.toString(s));
+    }
+
+    /**
+     * {@link #pathSegment(String)} overload for values of type {@code int}. This is useful for working with RESTful
+     * web APIs.
+     *
+     * @param i a {@code int} value
+     * @return this builder
+     * @see #pathSegment(byte)
+     * @see #pathSegment(short)
+     * @see #pathSegment(long)
+     */
+    public URIBuilder pathSegment(int i) {
+        return pathSegment(Integer.toString(i));
+    }
+
+    /**
+     * {@link #pathSegment(String)} overload for values of type {@code long}. This is useful for working with RESTful
+     * web APIs.
+     *
+     * @param l a {@code long} value
+     * @return this builder
+     * @see #pathSegment(byte)
+     * @see #pathSegment(short)
+     * @see #pathSegment(int)
+     */
+    public URIBuilder pathSegment(long l) {
+        return pathSegment(Long.toString(l));
+    }
+
+    /**
      * Sets a query parameter.
      *
      * @param name  the parameter's name, must be neither {@code null} nor empty
