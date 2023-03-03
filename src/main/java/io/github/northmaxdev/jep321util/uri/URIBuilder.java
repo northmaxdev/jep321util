@@ -146,6 +146,110 @@ public final class URIBuilder {
     }
 
     /**
+     * Sets a query parameter.
+     *
+     * @param name  the parameter's name, must be neither {@code null} nor empty
+     * @param value the parameter's value
+     * @return this builder
+     * @throws NullPointerException     if either the name is {@code null}
+     * @throws IllegalArgumentException if either the name is empty
+     */
+    public URIBuilder param(String name, byte value) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Sets a query parameter.
+     *
+     * @param name  the parameter's name, must be neither {@code null} nor empty
+     * @param value the parameter's value
+     * @return this builder
+     * @throws NullPointerException     if either the name is {@code null}
+     * @throws IllegalArgumentException if either the name is empty
+     */
+    public URIBuilder param(String name, short value) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Sets a query parameter.
+     *
+     * @param name  the parameter's name, must be neither {@code null} nor empty
+     * @param value the parameter's value
+     * @return this builder
+     * @throws NullPointerException     if either the name is {@code null}
+     * @throws IllegalArgumentException if either the name is empty
+     */
+    public URIBuilder param(String name, int value) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Sets a query parameter.
+     *
+     * @param name  the parameter's name, must be neither {@code null} nor empty
+     * @param value the parameter's value
+     * @return this builder
+     * @throws NullPointerException     if either the name is {@code null}
+     * @throws IllegalArgumentException if either the name is empty
+     */
+    public URIBuilder param(String name, long value) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Sets a query parameter.
+     *
+     * @param name  the parameter's name, must be neither {@code null} nor empty
+     * @param value the parameter's value
+     * @return this builder
+     * @throws NullPointerException     if either the name is {@code null}
+     * @throws IllegalArgumentException if either the name is empty
+     */
+    public URIBuilder param(String name, float value) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Sets a query parameter.
+     *
+     * @param name  the parameter's name, must be neither {@code null} nor empty
+     * @param value the parameter's value
+     * @return this builder
+     * @throws NullPointerException     if either the name is {@code null}
+     * @throws IllegalArgumentException if either the name is empty
+     */
+    public URIBuilder param(String name, double value) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Sets a query parameter.
+     *
+     * @param name  the parameter's name, must be neither {@code null} nor empty
+     * @param value the parameter's value
+     * @return this builder
+     * @throws NullPointerException     if either the name is {@code null}
+     * @throws IllegalArgumentException if either the name is empty
+     */
+    public URIBuilder param(String name, char value) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Sets a query parameter.
+     *
+     * @param name  the parameter's name, must be neither {@code null} nor empty
+     * @param value the parameter's value
+     * @return this builder
+     * @throws NullPointerException     if either the name is {@code null}
+     * @throws IllegalArgumentException if either the name is empty
+     */
+    public URIBuilder param(String name, boolean value) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
      * Builds a {@link URI} instance. Path segments and query parameters are percent-encoded when required as per
      * <a href="https://www.rfc-editor.org/rfc/rfc3986#section-2.1">RFC 3986 section 2.1</a>.
      *
