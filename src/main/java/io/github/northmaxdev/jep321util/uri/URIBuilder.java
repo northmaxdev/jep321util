@@ -155,7 +155,7 @@ public final class URIBuilder {
      * @throws IllegalArgumentException if either the name is empty
      */
     public URIBuilder param(String name, byte value) {
-        throw new UnsupportedOperationException();
+        return param(name, Byte.toString(value));
     }
 
     /**
@@ -168,7 +168,7 @@ public final class URIBuilder {
      * @throws IllegalArgumentException if either the name is empty
      */
     public URIBuilder param(String name, short value) {
-        throw new UnsupportedOperationException();
+        return param(name, Short.toString(value));
     }
 
     /**
@@ -181,7 +181,7 @@ public final class URIBuilder {
      * @throws IllegalArgumentException if either the name is empty
      */
     public URIBuilder param(String name, int value) {
-        throw new UnsupportedOperationException();
+        return param(name, Integer.toString(value));
     }
 
     /**
@@ -194,7 +194,7 @@ public final class URIBuilder {
      * @throws IllegalArgumentException if either the name is empty
      */
     public URIBuilder param(String name, long value) {
-        throw new UnsupportedOperationException();
+        return param(name, Long.toString(value));
     }
 
     /**
@@ -207,7 +207,7 @@ public final class URIBuilder {
      * @throws IllegalArgumentException if either the name is empty
      */
     public URIBuilder param(String name, float value) {
-        throw new UnsupportedOperationException();
+        return param(name, Float.toString(value));
     }
 
     /**
@@ -220,7 +220,7 @@ public final class URIBuilder {
      * @throws IllegalArgumentException if either the name is empty
      */
     public URIBuilder param(String name, double value) {
-        throw new UnsupportedOperationException();
+        return param(name, Double.toString(value));
     }
 
     /**
@@ -233,7 +233,7 @@ public final class URIBuilder {
      * @throws IllegalArgumentException if either the name is empty
      */
     public URIBuilder param(String name, char value) {
-        throw new UnsupportedOperationException();
+        return param(name, Character.toString(value));
     }
 
     /**
@@ -246,7 +246,7 @@ public final class URIBuilder {
      * @throws IllegalArgumentException if either the name is empty
      */
     public URIBuilder param(String name, boolean value) {
-        throw new UnsupportedOperationException();
+        return param(name, Boolean.toString(value));
     }
 
     /**
