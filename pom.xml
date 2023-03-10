@@ -17,6 +17,7 @@
 
     <properties>
         <java.version>11</java.version>
+        <guava.version>31.1-jre</guava.version>
         <junit.version>5.9.2</junit.version>
         <equalsverifier.version>3.13.1</equalsverifier.version>
 
@@ -27,6 +28,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
