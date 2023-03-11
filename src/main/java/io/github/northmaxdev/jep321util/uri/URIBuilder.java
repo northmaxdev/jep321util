@@ -19,8 +19,9 @@ import static java.util.stream.Collectors.joining;
  *
  * @apiNote This class's API is designed around
  * <a href="https://www.rfc-editor.org/rfc/rfc3986">RFC 3986</a>, while {@link URI} is designed around
- * <a href="https://www.ietf.org/rfc/rfc2396">RFC 2396</a>. The former obsoletes the latter, which thus may or may not
- * lead to compatibility/consistency issues.
+ * <a href="https://www.ietf.org/rfc/rfc2396">RFC 2396</a>. Generally speaking, this <b>will not</b>
+ * cause any incompatibility issues <i>precisely</i> because it has been taken into account, though
+ * this should still be something to be aware of.
  */
 public final class URIBuilder {
 
