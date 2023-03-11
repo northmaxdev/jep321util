@@ -2,6 +2,8 @@
 
 package io.github.northmaxdev.jep321util.uri;
 
+import com.google.common.net.PercentEscaper;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
@@ -27,6 +29,7 @@ public final class URIBuilder {
     private Port port;
     private final List<String> pathSegments;
     private final Map<String, String> params;
+    private final PercentEscaper percentEscaper;
 
     /**
      * Constructs an instance with the default configuration as follows:
@@ -47,6 +50,11 @@ public final class URIBuilder {
         this.port = null;
         this.pathSegments = new LinkedList<>(); /* Insertion order is crucial here */
         this.params = new HashMap<>();
+        /*
+         * Note: Guava v31.1-jre JavaDoc doesn't explicitly specify whether an empty string for safeChars is OK,
+         * but it must non-null and there aren't any additional safe characters, so here goes nothing.
+         */
+        this.percentEscaper = new PercentEscaper("", false);
     }
 
     /**
@@ -328,7 +336,7 @@ public final class URIBuilder {
 
         if (!pathSegments.isEmpty()) {
             String path = pathSegments.stream()
-                    .map(URIBuilder::percentEncoded)
+                    .map(percentEscaper::escape)
                     .collect(joining("/"));
             sb.append(path);
         }
@@ -336,7 +344,11 @@ public final class URIBuilder {
         if (!params.isEmpty()) {
             String query = params.entrySet()
                     .stream()
-                    .map(entry -> percentEncoded(entry.getKey()) + '=' + percentEncoded(entry.getValue()))
+                    .map(entry -> {
+                        String escapedName = percentEscaper.escape(entry.getKey());
+                        String escapedValue = percentEscaper.escape(entry.getValue());
+                        return escapedName + '=' + escapedValue;
+                    })
                     .collect(joining("&", "?", ""));
             sb.append(query);
         }
@@ -349,11 +361,6 @@ public final class URIBuilder {
                     "This is most likely a bug and/or the developer's oversight. " +
                     "Please report this to whoever maintains the source code currently.", e);
         }
-    }
-
-    private static String percentEncoded(String s) {
-        /* TODO: Implement */
-        return s;
     }
 
     /**
@@ -373,7 +380,8 @@ public final class URIBuilder {
                 && Objects.equals(this.host, other.host)
                 && Objects.equals(this.port, other.port)
                 && Objects.equals(this.pathSegments, other.pathSegments)
-                && Objects.equals(this.params, other.params);
+                && Objects.equals(this.params, other.params)
+                && Objects.equals(this.percentEscaper, other.percentEscaper);
     }
 
     /**
@@ -383,7 +391,7 @@ public final class URIBuilder {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(scheme, host, port, pathSegments, params);
+        return Objects.hash(scheme, host, port, pathSegments, params, percentEscaper);
     }
 
     /**
@@ -400,6 +408,7 @@ public final class URIBuilder {
                 ", port=" + port +
                 ", pathSegments=" + pathSegments +
                 ", params=" + params +
+                ", percentEscaper=" + percentEscaper +
                 '}';
     }
 }
