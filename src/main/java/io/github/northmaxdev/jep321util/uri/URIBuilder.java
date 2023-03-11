@@ -322,6 +322,15 @@ public final class URIBuilder {
      *                               <i>(make sure to read the exception message)</i>
      */
     public URI build() {
+        /*
+         * Current implementation notes:
+         *
+         * Path segments are percent-encoded. The host is not. The java.lang.URI class JavaDoc specifies
+         * these are permitted to be percent-encoded as per RFC 2396, but not only this library is based
+         * primarily on RFC 3986 which obsoletes the former, but I also cannot find any explicit mention
+         * of this permit in either of them.
+         */
+
         StringBuilder sb = new StringBuilder()
                 .append(scheme.toString())
                 .append("://")
