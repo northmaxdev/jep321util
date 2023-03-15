@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: Unlicense
+/* SPDX-License-Identifier: Unlicense */
 
 package io.github.northmaxdev.jep321util.uri;
 
