@@ -11,8 +11,8 @@ public interface Host {
     /**
      * Formats this host as per its formal syntax.
      * <p>
-     * <b>Clarification:</b> if the implementation represents an IPv4 address (as an example), this method should
-     * simply return an IP literal as a string, regardless of how it is stored internally within the class.
+     * <b>Clarification:</b> if the implementation represents an IPv4 or IPv6 address (merely examples), this method
+     * should simply return an IP literal as a string, regardless of how it is stored internally within the class.
      *
      * @return a non-{@code null} string
      */
