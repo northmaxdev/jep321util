@@ -17,4 +17,13 @@ public interface Host {
      * @return a non-{@code null} string
      */
     String formatted();
+
+    /**
+     * Returns a {@code Host} implementation that formats to {@code localhost}.
+     *
+     * @return a non-{@code null} {@code Host} object
+     */
+    static Host localhost() {
+        throw new UnsupportedOperationException();
+    }
 }
