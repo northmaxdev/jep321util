@@ -24,6 +24,6 @@ public interface Host {
      * @return a non-{@code null} {@code Host} object
      */
     static Host localhost() {
-        throw new UnsupportedOperationException();
+        return () -> "localhost";
     }
 }
