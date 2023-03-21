@@ -19,7 +19,7 @@
         <java.version>11</java.version>
         <guava.version>31.1-jre</guava.version>
         <junit.version>5.9.2</junit.version>
-        <equalsverifier.version>3.13.1</equalsverifier.version>
+        <equalsverifier.version>3.14.1</equalsverifier.version>
 
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
