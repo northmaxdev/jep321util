@@ -4,9 +4,13 @@ package io.github.northmaxdev.jep321util.uri;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PortsTests {
@@ -28,5 +32,15 @@ class PortsTests {
         void falseOnIllegalValues(int port) {
             assertThat(Ports.isValid(port)).isFalse();
         }
+    }
+
+    @Test
+    @DisplayName("Stream of all legal ports contains expected values only")
+    void streamContainsLegalValuesOnly() {
+        Iterable<Integer> legalValues = IntStream.rangeClosed(0, 65535)
+                .boxed()
+                .collect(toList());
+
+        assertThat(Ports.allLegalValues()).containsExactlyInAnyOrderElementsOf(legalValues);
     }
 }

@@ -2,6 +2,8 @@
 
 package io.github.northmaxdev.jep321util.uri;
 
+import java.util.stream.IntStream;
+
 /**
  * Utility class for the URI port subcomponent as per
  * <a href="https://www.rfc-editor.org/rfc/rfc3986#section-3.2.3">RFC 3986 section 3.2.3</a>.
@@ -32,5 +34,14 @@ public final class Ports {
      */
     public static boolean isValid(int port) {
         return port >= MIN && port <= MAX;
+    }
+
+    /**
+     * Constructs a stream containing all the values within [{@value MIN}, {@value MAX}] (both ends inclusive).
+     *
+     * @return a non-{@code null} {@link IntStream}
+     */
+    public static IntStream allLegalValues() {
+        return IntStream.rangeClosed(MIN, MAX);
     }
 }
