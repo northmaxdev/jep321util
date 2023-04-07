@@ -2,6 +2,7 @@
 
 package io.github.northmaxdev.jep321util.uri;
 
+import com.google.common.net.HostSpecifier;
 import com.google.common.net.PercentEscaper;
 
 import java.net.URI;
@@ -26,7 +27,7 @@ import static java.util.stream.Collectors.joining;
 public final class URIBuilder {
 
     private HTTPScheme scheme;
-    private Host host;
+    private HostSpecifier host;
     private Integer port;
     private final List<String> pathSegments;
     private final Map<String, String> params;
@@ -45,10 +46,11 @@ public final class URIBuilder {
      * @param host the URI's host, not {@code null}
      * @throws NullPointerException if the provided host is {@code null}
      */
-    public URIBuilder(Host host) {
-        this.scheme = HTTPScheme.SECURE;
-        this.host = host;
-        this.port = null;
+    public URIBuilder(HostSpecifier host) {
+        https();
+        host(host);
+        defaultPort();
+
         this.pathSegments = new LinkedList<>(); /* Insertion order is crucial here */
         this.params = new HashMap<>();
         /*
@@ -97,7 +99,7 @@ public final class URIBuilder {
      * @return this builder
      * @throws NullPointerException if the given host is {@code null}
      */
-    public URIBuilder host(Host h) {
+    public URIBuilder host(HostSpecifier h) {
         this.host = Objects.requireNonNull(h, "Host cannot be null");
         return this;
     }
@@ -348,7 +350,7 @@ public final class URIBuilder {
         StringBuilder sb = new StringBuilder()
                 .append(scheme.toString())
                 .append("://")
-                .append(host.formatted());
+                .append(host.toString());
 
         if (port != null) {
             sb.append(':');
