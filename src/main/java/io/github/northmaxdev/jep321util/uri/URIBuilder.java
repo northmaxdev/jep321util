@@ -27,7 +27,7 @@ public final class URIBuilder {
 
     private HTTPScheme scheme;
     private Host host;
-    private Port port;
+    private Integer port;
     private final List<String> pathSegments;
     private final Map<String, String> params;
     private final PercentEscaper percentEscaper;
@@ -105,11 +105,26 @@ public final class URIBuilder {
     /**
      * Sets the URI's port.
      *
-     * @param p a {@link Port} instance, {@code null} is allowed
+     * @param p a valid port value
+     * @return this builder
+     * @throws IllegalArgumentException if the given value is illegal as per {@link Ports#isValid(int)}
+     * @see Ports
+     */
+    public URIBuilder port(int p) {
+        if (!Ports.isValid(p)) {
+            throw new IllegalArgumentException("Illegal port value: " + p);
+        }
+        this.port = p;
+        return this;
+    }
+
+    /**
+     * Resets the URI's port.
+     *
      * @return this builder
      */
-    public URIBuilder port(Port p) {
-        this.port = p;
+    public URIBuilder defaultPort() {
+        this.port = null;
         return this;
     }
 
@@ -337,7 +352,7 @@ public final class URIBuilder {
 
         if (port != null) {
             sb.append(':');
-            sb.append(port.getValue());
+            sb.append(port);
         }
 
         sb.append('/');
