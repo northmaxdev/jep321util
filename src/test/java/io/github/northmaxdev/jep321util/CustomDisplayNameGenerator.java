@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayNameGenerator;
 import java.lang.reflect.Method;
 import java.util.Map;
 
-public class CustomDisplayNameGenerator implements DisplayNameGenerator {
+public final class CustomDisplayNameGenerator implements DisplayNameGenerator {
 
     private static final String TOP_LEVEL_CLASS_NAME_SUFFIX = "Tests";
     private static final Map<String, String> MAGIC_NESTED_CLASS_NAMES_TO_DISPLAY_NAMES = Map.of(
