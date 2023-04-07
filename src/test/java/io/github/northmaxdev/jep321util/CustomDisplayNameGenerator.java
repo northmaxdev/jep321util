@@ -9,7 +9,6 @@ import java.util.Map;
 
 public final class CustomDisplayNameGenerator implements DisplayNameGenerator {
 
-    private static final String TOP_LEVEL_CLASS_NAME_SUFFIX = "Tests";
     private static final Map<String, String> MAGIC_NESTED_CLASS_NAMES_TO_DISPLAY_NAMES = Map.of(
             "ToString", "Method: toString"
     );
@@ -21,7 +20,7 @@ public final class CustomDisplayNameGenerator implements DisplayNameGenerator {
     public String generateDisplayNameForClass(Class<?> aClass) {
         String testClassName = aClass.getSimpleName();
 
-        int suffixIndex = testClassName.indexOf(TOP_LEVEL_CLASS_NAME_SUFFIX);
+        int suffixIndex = testClassName.indexOf("Tests");
         /*
          * If the top-level test class name does NOT follow the convention of {TESTED_CLASS_NAME + "Tests"},
          * simply return it as-is with some kind of visual marker to warn the user.
