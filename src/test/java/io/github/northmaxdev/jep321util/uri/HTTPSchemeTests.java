@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class HTTPSchemeTests {
 
@@ -21,19 +21,17 @@ class HTTPSchemeTests {
         @Test
         @DisplayName("SECURE returns \"https\"")
         void httpsOnSecure() {
-            String expected = "https";
             String actual = HTTPScheme.SECURE.toString();
 
-            assertEquals(expected, actual);
+            assertThat(actual).isEqualTo("https");
         }
 
         @Test
         @DisplayName("UNSECURE returns \"http\"")
         void httpOnUnsecure() {
-            String expected = "http";
             String actual = HTTPScheme.UNSECURE.toString();
 
-            assertEquals(expected, actual);
+            assertThat(actual).isEqualTo("http");
         }
     }
 
@@ -44,19 +42,17 @@ class HTTPSchemeTests {
         @Test
         @DisplayName("true returns SECURE")
         void secureOnTrue() {
-            HTTPScheme expected = HTTPScheme.SECURE;
             HTTPScheme actual = HTTPScheme.valueOf(true);
 
-            assertEquals(expected, actual);
+            assertThat(actual).isEqualTo(HTTPScheme.SECURE);
         }
 
         @Test
         @DisplayName("false returns UNSECURE")
         void unsecureOnFalse() {
-            HTTPScheme expected = HTTPScheme.UNSECURE;
             HTTPScheme actual = HTTPScheme.valueOf(false);
 
-            assertEquals(expected, actual);
+            assertThat(actual).isEqualTo(HTTPScheme.UNSECURE);
         }
     }
 
@@ -69,28 +65,25 @@ class HTTPSchemeTests {
         @ValueSource(strings = {"hello world", "HttpS"})
         @DisplayName("Invalid value returns an empty Optional")
         void invalidValueReturnsEmpty(String invalidValue) {
-            Optional<HTTPScheme> expected = Optional.empty();
             Optional<HTTPScheme> actual = HTTPScheme.instanceOf(invalidValue);
 
-            assertEquals(expected, actual);
+            assertThat(actual).isEmpty();
         }
 
         @Test
         @DisplayName("\"https\" returns SECURE")
         void secureOnHttps() {
-            Optional<HTTPScheme> expected = Optional.of(HTTPScheme.SECURE);
             Optional<HTTPScheme> actual = HTTPScheme.instanceOf("https");
 
-            assertEquals(expected, actual);
+            assertThat(actual).contains(HTTPScheme.SECURE);
         }
 
         @Test
         @DisplayName("\"http\" returns UNSECURE")
         void unsecureOnHttp() {
-            Optional<HTTPScheme> expected = Optional.of(HTTPScheme.UNSECURE);
             Optional<HTTPScheme> actual = HTTPScheme.instanceOf("http");
 
-            assertEquals(expected, actual);
+            assertThat(actual).contains(HTTPScheme.UNSECURE);
         }
     }
 }

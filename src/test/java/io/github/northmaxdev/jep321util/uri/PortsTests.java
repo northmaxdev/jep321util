@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class PortsTests {
 
@@ -20,14 +19,14 @@ class PortsTests {
         @ValueSource(ints = {0, 65535, 443, 80, 8080})
         @DisplayName("Returns \"true\" when given a legal value")
         void trueOnLegalValues(int port) {
-            assertTrue(Ports.isValid(port));
+            assertThat(Ports.isValid(port)).isTrue();
         }
 
         @ParameterizedTest
         @ValueSource(ints = {Integer.MIN_VALUE, -1, 65536, Integer.MAX_VALUE})
         @DisplayName("Returns \"false\" when given an illegal value")
         void falseOnIllegalValues(int port) {
-            assertFalse(Ports.isValid(port));
+            assertThat(Ports.isValid(port)).isFalse();
         }
     }
 }
