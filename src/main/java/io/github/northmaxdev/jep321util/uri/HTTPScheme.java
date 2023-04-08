@@ -2,9 +2,7 @@
 
 package io.github.northmaxdev.jep321util.uri;
 
-import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 /**
  * Models the URI scheme for the <i>Hypertext Transfer Protocol</i>.
@@ -37,9 +35,11 @@ public enum HTTPScheme {
      * unrecognized or is {@code null}
      */
     public static Optional<HTTPScheme> instanceOf(String s) {
-        return Stream.of(SECURE, UNSECURE)
-                .filter(scheme -> Objects.equals(scheme.strForm, s))
-                .findFirst();
+        return switch (s) {
+            case "https" -> Optional.of(SECURE);
+            case "http" -> Optional.of(UNSECURE);
+            case null, default -> Optional.empty();
+        };
     }
 
     /**
