@@ -20,6 +20,8 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 class URIBuilderTests {
 
+    static final HostSpecifier DUMMY_HOST = HostSpecifier.fromValid("example.com");
+
     @ParameterizedTest
     @MethodSource("provideConfigsAndExpectedResults")
     @DisplayName("Builder configurations produce the correct URIs")
@@ -30,7 +32,7 @@ class URIBuilderTests {
     }
 
     Stream<Arguments> provideConfigsAndExpectedResults() {
-        URIBuilder config1 = new URIBuilder(HostSpecifier.fromValid("example.com"))
+        URIBuilder config1 = new URIBuilder(DUMMY_HOST)
                 .https()
                 .defaultPort()
                 .pathSegment("reports")
@@ -41,10 +43,32 @@ class URIBuilderTests {
                 URI.create("https://example.com/reports?month=5&year=2010")
         );
 
-        /* TODO: More cases */
+        URIBuilder config2 = new URIBuilder(DUMMY_HOST)
+                .http()
+                .port(8080)
+                .param("foo", true);
+        Iterable<URI> config2PossibleResults = List.of(
+                URI.create("http://example.com:8080/?foo=true")
+        );
+
+        URIBuilder config3 = new URIBuilder(DUMMY_HOST);
+        Iterable<URI> config3PossibleResults = List.of(
+                URI.create("https://example.com/")
+        );
+
+        URIBuilder config4 = new URIBuilder(DUMMY_HOST)
+                .pathSegment("products")
+                .pathSegment("laptops")
+                .pathSegment(12345);
+        Iterable<URI> config4PossibleResults = List.of(
+                URI.create("https://example.com/products/laptops/12345")
+        );
 
         return Stream.of(
-                arguments(config1, config1PossibleResults)
+                arguments(config1, config1PossibleResults),
+                arguments(config2, config2PossibleResults),
+                arguments(config3, config3PossibleResults),
+                arguments(config4, config4PossibleResults)
         );
     }
 
