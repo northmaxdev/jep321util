@@ -477,12 +477,8 @@ public final class URIBuilder {
      */
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof URIBuilder)) {
-            return false;
-        }
-
-        URIBuilder other = (URIBuilder) obj;
-        return Objects.equals(this.scheme, other.scheme)
+        return obj instanceof URIBuilder other
+                && Objects.equals(this.scheme, other.scheme)
                 && Objects.equals(this.hostAsStr, other.hostAsStr)
                 && Objects.equals(this.port, other.port)
                 && Objects.equals(this.pathSegments, other.pathSegments)
