@@ -17,6 +17,8 @@ import static java.util.stream.Collectors.joining;
 
 /**
  * Builder for {@link URI} instances.
+ * <p>
+ * Instances of this class are constructed primarily using a set of static factory methods.
  *
  * @apiNote This class's API is designed around
  * <a href="https://www.rfc-editor.org/rfc/rfc3986">RFC 3986</a>, while {@link URI} is designed around
@@ -34,22 +36,68 @@ public final class URIBuilder {
     private final PercentEscaper percentEscaper;
 
     /**
-     * Constructs an instance with the default configuration as follows:
+     * Constructs a builder with the following configuration:
      * <ul>
      *     <li>Scheme: HTTPS</li>
-     *     <li>Host: <i>set to the provided value</i></li>
-     *     <li>Port: <i>none</i></li>
+     *     <li>Host: <i>set to the provided {@link HostSpecifier} instance</i></li>
+     *     <li>Port: <i>default</i></li>
      *     <li>Path segments: <i>none</i> (i.e. the root path)</li>
      *     <li>Query parameters: <i>none</i></li>
      * </ul>
      *
-     * @param host the URI's host, not {@code null}
-     * @throws NullPointerException if the provided host is {@code null}
+     * @param h a non-{@code null} {@code HostSpecifier} instance
+     * @return an instance of {@code URIBuilder}
+     * @throws NullPointerException if the provided {@code HostSpecifier} is {@code null}
+     * @see URIBuilder#host(HostSpecifier)
      */
-    public URIBuilder(HostSpecifier host) {
-        https();
-        host(host);
-        defaultPort();
+    public static URIBuilder withHost(HostSpecifier h) {
+        URIBuilder builder = new URIBuilder();
+        return builder.host(h);
+    }
+
+    /**
+     * Constructs a builder with the following configuration:
+     * <ul>
+     *     <li>Scheme: HTTPS</li>
+     *     <li>Host: <i>set to the provided string which is known to be a valid URI host</i>
+     *     (see {@link URIBuilder#validHost(String)})</li>
+     *     <li>Port: <i>default</i></li>
+     *     <li>Path segments: <i>none</i> (i.e. the root path)</li>
+     *     <li>Query parameters: <i>none</i></li>
+     * </ul>
+     *
+     * @param s a non-{@code null} string
+     * @return an instance of {@code URIBuilder}
+     * @throws NullPointerException if the provided string is {@code null}
+     * @see URIBuilder#validHost(String)
+     */
+    public static URIBuilder withValidHost(String s) {
+        URIBuilder builder = new URIBuilder();
+        return builder.validHost(s);
+    }
+
+    /**
+     * Constructs a builder with the following configuration:
+     * <ul>
+     *     <li>Scheme: HTTPS</li>
+     *     <li>Host: {@code localhost}</li>
+     *     <li>Port: <i>default</i></li>
+     *     <li>Path segments: <i>none</i> (i.e. the root path)</li>
+     *     <li>Query parameters: <i>none</i></li>
+     * </ul>
+     *
+     * @return an instance of {@code URIBuilder}
+     * @see URIBuilder#localhost()
+     */
+    public static URIBuilder withLocalhost() {
+        URIBuilder builder = new URIBuilder();
+        return builder.localhost();
+    }
+
+    private URIBuilder() {
+        this.scheme = HTTPScheme.SECURE;
+        this.hostAsStr = null; /* Broken invariant */
+        this.port = null;
 
         this.pathSegments = new LinkedList<>(); /* Insertion order is important */
         this.params = new LinkedHashMap<>(); /* Insertion order is important */
