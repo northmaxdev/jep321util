@@ -7,7 +7,7 @@ import com.google.common.net.PercentEscaper;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -51,8 +51,8 @@ public final class URIBuilder {
         host(host);
         defaultPort();
 
-        this.pathSegments = new LinkedList<>(); /* Insertion order is crucial here */
-        this.params = new HashMap<>();
+        this.pathSegments = new LinkedList<>(); /* Insertion order is important */
+        this.params = new LinkedHashMap<>(); /* Insertion order is important */
         /*
          * Note: Guava v31.1-jre JavaDoc doesn't explicitly specify whether an empty string for safeChars is OK,
          * but it must non-null and there aren't any additional safe characters, so here goes nothing.
@@ -338,6 +338,7 @@ public final class URIBuilder {
      * @return a non-{@code null} {@link URI} <i>(fresh from the oven!)</i>
      * @throws IllegalStateException if for whatever reason the builder's configuration produces a malformed URI
      *                               <i>(make sure to read the exception message)</i>
+     * @apiNote Query parameters are serialized in the same order as they were added
      */
     public URI build() {
         /*
