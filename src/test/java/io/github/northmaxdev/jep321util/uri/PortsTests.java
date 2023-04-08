@@ -10,7 +10,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.IntStream;
 
-import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PortsTests {
@@ -39,7 +38,7 @@ class PortsTests {
     void streamContainsLegalValuesOnly() {
         Iterable<Integer> legalValues = IntStream.rangeClosed(0, 65535)
                 .boxed()
-                .collect(toList());
+                .toList();
 
         assertThat(Ports.allLegalValues()).containsExactlyInAnyOrderElementsOf(legalValues);
     }
