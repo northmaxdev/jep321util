@@ -64,11 +64,26 @@ class URIBuilderTests {
                 URI.create("https://example.com/products/laptops/12345")
         );
 
+        URIBuilder config5 = new URIBuilder(DUMMY_HOST)
+                .pathSegment("search")
+                .param("query", "Что такое JVM?");
+        Iterable<URI> config5PossibleResults = List.of(
+                URI.create("https://example.com/search?query=%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20JVM%3F")
+        );
+
+        URIBuilder config6 = new URIBuilder(DUMMY_HOST)
+                .pathSegment("заказы");
+        Iterable<URI> config6PossibleResults = List.of(
+                URI.create("https://example.com/%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B")
+        );
+
         return Stream.of(
                 arguments(config1, config1PossibleResults),
                 arguments(config2, config2PossibleResults),
                 arguments(config3, config3PossibleResults),
-                arguments(config4, config4PossibleResults)
+                arguments(config4, config4PossibleResults),
+                arguments(config5, config5PossibleResults),
+                arguments(config6, config6PossibleResults)
         );
     }
 
