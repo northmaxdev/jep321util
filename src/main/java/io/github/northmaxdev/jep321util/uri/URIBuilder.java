@@ -100,8 +100,39 @@ public final class URIBuilder {
      * @throws NullPointerException if the given host is {@code null}
      */
     public URIBuilder host(HostSpecifier h) {
-        Objects.requireNonNull(h, "Host cannot be null");
-        this.hostAsStr = h.toString();
+        this.hostAsStr = Objects.requireNonNull(h, "Host cannot be null").toString();
+        return this;
+    }
+
+    /**
+     * Sets the URI's host.
+     * <p>
+     * The provided string may contain anything that is considered a valid URI host as per
+     * <a href="https://www.rfc-editor.org/rfc/rfc3986#section-3.2.2">RFC 3986 section 3.2.2</a>, which is an IPv4
+     * address, an IPv6 address or a registered domain name.
+     * <p>
+     * <b>This method is intended primarily for cases where the host is known/guaranteed to be syntactically valid</b>
+     * - for instance, when declaring a {@code static final} constant in a class definition. For these reasons, the
+     * provided string is <b>not</b> validated to be correct, and it is a programmatic error to use this method in any
+     * other case.
+     *
+     * @param s a non-{@code null} string that contains a valid IPv4 address, an IPv6 address or a registered domain
+     *          name
+     * @return this builder
+     * @throws NullPointerException if the provided string is {@code null}
+     */
+    public URIBuilder validHost(String s) {
+        this.hostAsStr = Objects.requireNonNull(s, "Host string cannot be null");
+        return this;
+    }
+
+    /**
+     * Sets the URI's host to {@code localhost}.
+     *
+     * @return this builder
+     */
+    public URIBuilder localhost() {
+        this.hostAsStr = "localhost";
         return this;
     }
 
