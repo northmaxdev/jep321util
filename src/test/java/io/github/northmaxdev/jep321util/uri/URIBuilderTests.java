@@ -12,7 +12,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.net.URI;
-import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,10 +24,10 @@ class URIBuilderTests {
     @ParameterizedTest
     @MethodSource("provideConfigsAndExpectedResults")
     @DisplayName("Builder configurations produce the correct URIs")
-    void configsAndExpectedResultsMatch(URIBuilder builderConfig, Iterable<URI> possibleResults) {
+    void configsAndExpectedResultsMatch(URIBuilder builderConfig, URI expected) {
         URI actual = builderConfig.build();
 
-        assertThat(actual).isIn(possibleResults);
+        assertThat(actual).isEqualTo(expected);
     }
 
     Stream<Arguments> provideConfigsAndExpectedResults() {
@@ -38,52 +37,39 @@ class URIBuilderTests {
                 .pathSegment("reports")
                 .param("year", 2010)
                 .param("month", 5);
-        Iterable<URI> config1PossibleResults = List.of(
-                URI.create("https://example.com/reports?year=2010&month=5"),
-                URI.create("https://example.com/reports?month=5&year=2010")
-        );
+        URI config1Expected = URI.create("https://example.com/reports?year=2010&month=5");
 
         URIBuilder config2 = new URIBuilder(DUMMY_HOST)
                 .http()
                 .port(8080)
                 .param("foo", true);
-        Iterable<URI> config2PossibleResults = List.of(
-                URI.create("http://example.com:8080/?foo=true")
-        );
+        URI config2Expected = URI.create("http://example.com:8080/?foo=true");
 
         URIBuilder config3 = new URIBuilder(DUMMY_HOST);
-        Iterable<URI> config3PossibleResults = List.of(
-                URI.create("https://example.com/")
-        );
+        URI config3Expected = URI.create("https://example.com/");
 
         URIBuilder config4 = new URIBuilder(DUMMY_HOST)
                 .pathSegment("products")
                 .pathSegment("laptops")
                 .pathSegment(12345);
-        Iterable<URI> config4PossibleResults = List.of(
-                URI.create("https://example.com/products/laptops/12345")
-        );
+        URI config4Expected = URI.create("https://example.com/products/laptops/12345");
 
         URIBuilder config5 = new URIBuilder(DUMMY_HOST)
                 .pathSegment("search")
                 .param("query", "Что такое JVM?");
-        Iterable<URI> config5PossibleResults = List.of(
-                URI.create("https://example.com/search?query=%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20JVM%3F")
-        );
+        URI config5Expected = URI.create("https://example.com/search?query=%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20JVM%3F");
 
         URIBuilder config6 = new URIBuilder(DUMMY_HOST)
                 .pathSegment("заказы");
-        Iterable<URI> config6PossibleResults = List.of(
-                URI.create("https://example.com/%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B")
-        );
+        URI config6Expected = URI.create("https://example.com/%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B");
 
         return Stream.of(
-                arguments(config1, config1PossibleResults),
-                arguments(config2, config2PossibleResults),
-                arguments(config3, config3PossibleResults),
-                arguments(config4, config4PossibleResults),
-                arguments(config5, config5PossibleResults),
-                arguments(config6, config6PossibleResults)
+                arguments(config1, config1Expected),
+                arguments(config2, config2Expected),
+                arguments(config3, config3Expected),
+                arguments(config4, config4Expected),
+                arguments(config5, config5Expected),
+                arguments(config6, config6Expected)
         );
     }
 
