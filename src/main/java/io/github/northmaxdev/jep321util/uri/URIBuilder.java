@@ -462,10 +462,10 @@ public final class URIBuilder {
         try {
             return new URI(sb.toString());
         } catch (URISyntaxException e) {
-            throw new IllegalStateException(
-                    "Attempting to build a URI resulted in malformed syntax. " +
-                    "This is most likely a bug and/or the developer's oversight. " +
-                    "Please report this to whoever maintains the source code currently.", e);
+            throw new IllegalStateException("""
+                    Attempting to build a URI resulted in malformed syntax. \
+                    This is most likely a bug and/or the developer's oversight. \
+                    Please report this to whoever maintains the source code currently.""", e);
         }
     }
 
