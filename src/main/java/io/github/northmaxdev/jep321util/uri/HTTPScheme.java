@@ -35,10 +35,11 @@ public enum HTTPScheme {
      * unrecognized or is {@code null}
      */
     public static Optional<HTTPScheme> instanceOf(String s) {
-        return switch (s) {
+        /* TODO: Use switch pattern matching ('case null, default') on next Java version port */
+        return s == null ? Optional.empty() : switch (s) {
             case "https" -> Optional.of(SECURE);
             case "http" -> Optional.of(UNSECURE);
-            case null, default -> Optional.empty();
+            default -> Optional.empty();
         };
     }
 
