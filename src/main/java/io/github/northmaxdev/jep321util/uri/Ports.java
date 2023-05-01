@@ -24,6 +24,7 @@
 
 package io.github.northmaxdev.jep321util.uri;
 
+import java.util.random.RandomGenerator;
 import java.util.stream.IntStream;
 
 /**
@@ -33,6 +34,8 @@ import java.util.stream.IntStream;
  * <a href="https://www.rfc-editor.org/rfc/rfc6335#section-6">RFC 6335 section 6</a>.
  */
 public final class Ports {
+
+    private static final RandomGenerator RNG = RandomGenerator.getDefault();
 
     /**
      * The lowest value allowed as per
@@ -64,7 +67,7 @@ public final class Ports {
      * @return a random integer within [{@value MIN}, {@value MAX}] (both ends inclusive)
      */
     public static int random() {
-        throw new UnsupportedOperationException();
+        return RNG.nextInt(MIN, MAX + 1);
     }
 
     /**
