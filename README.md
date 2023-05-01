@@ -12,20 +12,6 @@ however, that the API does not follow the publication to the T. Instead, it:
 The library's API was designed to match Java 8 and Java 11 in terms of modernity. For instance, it makes heavy use of
 immutability, static factory methods, and other related "best practices" and conventions.
 
-# Branch Information
-This project targets Java LTS releases exclusively, starting from Java 11. For each Java LTS release, there is a 
-separate development branch. The structure is as follows:
-
-| Branch  | Purpose                                                    | Library Version |
-|---------|------------------------------------------------------------|-----------------|
-| `1.x.x` | Latest stable release targeting Java 11                    | 1.x.x           |
-| `2.x.x` | Latest stable release targeting Java 17                    | 2.x.x           |
-| `main`  | Latest stable release of the latest supported Java version | N/A             |
-
-A release of a new Java LTS version does not obsolete any of the previous branches — development between all of them 
-technically continues in parallel. That being said, the latest and the greatest should generally be preferred as 
-**jep321util** always tries to make as much use of the new Java features as possible.
-
 # Usage Examples
 ```java
 /* http://localhost:8080/orders/12345 */
@@ -48,6 +34,20 @@ URI uri = URIBuilder.withValidHost("example.com")
 
 # Building & Installing
 *Coming soon!*
+
+# Branch Information
+This project targets Java LTS releases exclusively, starting from Java 11. For each Java LTS release, there is a 
+separate development branch. The structure is as follows:
+
+| Branch  | Purpose                                                    | Library Version |
+|---------|------------------------------------------------------------|-----------------|
+| `1.x.x` | Latest stable release targeting Java 11                    | 1.x.x           |
+| `2.x.x` | Latest stable release targeting Java 17                    | 2.x.x           |
+| `main`  | Latest stable release of the latest supported Java version | N/A             |
+
+A release of a new Java LTS version does not obsolete any of the previous branches — development between all of them 
+technically continues in parallel. That being said, the latest and the greatest should generally be preferred as 
+**jep321util** always tries to make as much use of the new Java features as possible.
 
 # Licensing
 See the [license file](LICENSE) for more information.
