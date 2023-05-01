@@ -233,6 +233,18 @@ public final class URIBuilder {
     }
 
     /**
+     * Sets the URI's port to a random one.
+     *
+     * @return this builder
+     * @implNote This is functionally equivalent to calling {@code port(Ports.random())}
+     * @see Ports#random()
+     */
+    public URIBuilder randomPort() {
+        this.port = Ports.random();
+        return this;
+    }
+
+    /**
      * Adds a path segment.
      * <p>
      * <b>Clarification:</b> given a path of {@code /foo/bar/baz}, its segments are: {@code foo}, {@code bar} and
