@@ -26,6 +26,7 @@ package io.github.northmaxdev.jep321util.uri;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -63,5 +64,13 @@ class PortsTests {
                 .toList();
 
         assertThat(Ports.allLegalValues()).containsExactlyInAnyOrderElementsOf(legalValues);
+    }
+
+    @RepeatedTest(100)
+    @DisplayName("Randomly generated port is within legal boundaries")
+    void randomIsWithinRange() {
+        int value = Ports.random();
+
+        assertThat(value).isBetween(0, 65535);
     }
 }

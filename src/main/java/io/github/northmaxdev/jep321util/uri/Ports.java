@@ -59,6 +59,15 @@ public final class Ports {
     }
 
     /**
+     * Generates a random port number within the legal boundaries.
+     *
+     * @return a random integer within [{@value MIN}, {@value MAX}] (both ends inclusive)
+     */
+    public static int random() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
      * Constructs a stream containing all the values within [{@value MIN}, {@value MAX}] (both ends inclusive).
      *
      * @return a non-{@code null} {@link IntStream}
