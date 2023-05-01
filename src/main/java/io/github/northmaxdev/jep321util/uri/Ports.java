@@ -24,6 +24,7 @@
 
 package io.github.northmaxdev.jep321util.uri;
 
+import java.util.Objects;
 import java.util.random.RandomGenerator;
 import java.util.stream.IntStream;
 
@@ -35,7 +36,7 @@ import java.util.stream.IntStream;
  */
 public final class Ports {
 
-    private static final RandomGenerator RNG = RandomGenerator.getDefault();
+    private static final RandomGenerator DEFAULT_RNG = RandomGenerator.getDefault();
 
     /**
      * The lowest value allowed as per
@@ -67,7 +68,19 @@ public final class Ports {
      * @return a random integer within [{@value MIN}, {@value MAX}] (both ends inclusive)
      */
     public static int random() {
-        return RNG.nextInt(MIN, MAX + 1);
+        return random(DEFAULT_RNG);
+    }
+
+    /**
+     * Generates a random port number within the legal boundaries using the provided random number generator.
+     *
+     * @param generator a non-{@code null} instance of {@link RandomGenerator}
+     * @return a random integer within [{@value MIN}, {@value MAX}] (both ends inclusive)
+     * @throws NullPointerException if the provided generator is {@code null}
+     */
+    public static int random(RandomGenerator generator) {
+        Objects.requireNonNull(generator, "Generator must not be null");
+        return generator.nextInt(MIN, MAX + 1);
     }
 
     /**
