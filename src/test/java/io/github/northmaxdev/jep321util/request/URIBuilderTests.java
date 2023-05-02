@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package io.github.northmaxdev.jep321util.uri;
+package io.github.northmaxdev.jep321util.request;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.Warning;
