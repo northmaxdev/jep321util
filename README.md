@@ -2,7 +2,7 @@
 This project aims to provide a tiny set of modern, high-quality utility classes to complement the native HTTP client API
 introduced in Java 11. The inspiration was initially drawn from a similar set of utilities provided in the
 [Apache HTTP client](https://hc.apache.org/index.html) API, most notably — the `URIBuilder` class. This project's name
-is a reference to the JEP that finalized the Java native HTTP client proposal.
+is a reference to [the JEP that finalized the Java native HTTP client proposal](https://openjdk.org/jeps/321).
 
 The library's contents are based primarily on [RFC 3986](https://www.rfc-editor.org/rfc/rfc3986). It should be noted,
 however, that the API does not follow the publication to the T. Instead, it:
