@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package io.github.northmaxdev.jep321util.uri;
+package io.github.northmaxdev.jep321util.request;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

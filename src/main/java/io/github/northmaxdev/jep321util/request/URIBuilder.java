@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package io.github.northmaxdev.jep321util.uri;
+package io.github.northmaxdev.jep321util.request;
 
 import com.google.common.net.HostSpecifier;
 import com.google.common.net.PercentEscaper;
@@ -334,7 +334,7 @@ public final class URIBuilder {
         Objects.requireNonNull(value, "Parameter value cannot be null");
 
         if (name.isEmpty() || value.isEmpty()) {
-            throw new IllegalArgumentException("Neither the parameter name nor its value may be null");
+            throw new IllegalArgumentException("Neither the parameter name nor its value may be empty");
         }
 
         this.params.put(name, value);
