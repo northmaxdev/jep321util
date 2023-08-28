@@ -11,7 +11,7 @@
     <version>3.0.0</version>
     <packaging>jar</packaging>
 
-    <name>Java 11 HTTP Client Utilities</name>
+    <name>JEP321 HTTP Client Utilities</name>
     <inceptionYear>2023</inceptionYear>
     <url>https://github.com/northmaxdev/jep321util</url>
 
