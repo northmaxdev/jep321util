@@ -16,10 +16,10 @@
     <url>https://github.com/northmaxdev/jep321util</url>
 
     <properties>
-        <java.version>17</java.version>
-        <guava.version>31.1-jre</guava.version>
-        <junit.version>5.9.2</junit.version>
-        <equalsverifier.version>3.14.1</equalsverifier.version>
+        <java.version>20</java.version>
+        <guava.version>31.1-jre</guava.version> <!-- TODO: Remove this when appropriate -->
+        <junit.version>5.10.0</junit.version>
+        <equalsverifier.version>3.15.1</equalsverifier.version>
         <assertj.version>3.24.2</assertj.version>
 
         <maven.compiler.source>${java.version}</maven.compiler.source>
