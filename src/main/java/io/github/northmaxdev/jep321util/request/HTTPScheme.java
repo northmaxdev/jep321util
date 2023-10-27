@@ -34,17 +34,19 @@ public enum HTTPScheme {
     /**
      * The instance that represents HTTPS.
      */
-    SECURE("https"),
+    SECURE("https", true),
 
     /**
      * The instance that represents HTTP.
      */
-    UNSECURE("http");
+    UNSECURE("http", false);
 
     private final String value;
+    private final boolean secure;
 
-    HTTPScheme(String value) {
+    HTTPScheme(String value, boolean secure) {
         this.value = value;
+        this.secure = secure;
     }
 
     /**
@@ -83,5 +85,14 @@ public enum HTTPScheme {
     @Override
     public String toString() {
         return value;
+    }
+
+    /**
+     * Checks whether this scheme represents a secure connection.
+     *
+     * @return {@code true} for {@link #SECURE} and {@code false} for {@link #UNSECURE}
+     */
+    public boolean isSecure() {
+        return secure;
     }
 }
