@@ -48,7 +48,7 @@ public enum HTTPScheme {
     }
 
     /**
-     * Static factory method to fetch the corresponding instance for the given string value, e.g. a value of
+     * Static factory method to fetch the corresponding instance for the given string value, e.g., a value of
      * {@code "https"} would return {@link #SECURE}. <b>This method is case-sensitive, only lowercase values will do</b>
      * <i>(for the sake of symmetry against {@link #toString()}).</i>
      *
@@ -57,11 +57,10 @@ public enum HTTPScheme {
      * unrecognized or is {@code null}
      */
     public static Optional<HTTPScheme> instanceOf(String s) {
-        /* TODO: Use switch pattern matching ('case null, default') on next Java version port */
-        return s == null ? Optional.empty() : switch (s) {
+        return switch (s) {
             case "https" -> Optional.of(SECURE);
             case "http" -> Optional.of(UNSECURE);
-            default -> Optional.empty();
+            case null, default -> Optional.empty();
         };
     }
 
