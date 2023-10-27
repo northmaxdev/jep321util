@@ -34,21 +34,23 @@ public enum HTTPScheme {
     /**
      * The instance that represents HTTPS.
      */
-    SECURE("https"),
+    SECURE("https", true),
 
     /**
      * The instance that represents HTTP.
      */
-    UNSECURE("http");
+    UNSECURE("http", false);
 
-    private final String strForm;
+    private final String value;
+    private final boolean secure;
 
-    HTTPScheme(String strForm) {
-        this.strForm = strForm;
+    HTTPScheme(String value, boolean secure) {
+        this.value = value;
+        this.secure = secure;
     }
 
     /**
-     * Static factory method to fetch the corresponding instance for the given string value, e.g. a value of
+     * Static factory method to fetch the corresponding instance for the given string value, e.g., a value of
      * {@code "https"} would return {@link #SECURE}. <b>This method is case-sensitive, only lowercase values will do</b>
      * <i>(for the sake of symmetry against {@link #toString()}).</i>
      *
@@ -57,11 +59,10 @@ public enum HTTPScheme {
      * unrecognized or is {@code null}
      */
     public static Optional<HTTPScheme> instanceOf(String s) {
-        /* TODO: Use switch pattern matching ('case null, default') on next Java version port */
-        return s == null ? Optional.empty() : switch (s) {
+        return switch (s) {
             case "https" -> Optional.of(SECURE);
             case "http" -> Optional.of(UNSECURE);
-            default -> Optional.empty();
+            case null, default -> Optional.empty();
         };
     }
 
@@ -83,6 +84,15 @@ public enum HTTPScheme {
      */
     @Override
     public String toString() {
-        return strForm;
+        return value;
+    }
+
+    /**
+     * Checks whether this scheme represents a secure connection.
+     *
+     * @return {@code true} for {@link #SECURE} and {@code false} for {@link #UNSECURE}
+     */
+    public boolean isSecure() {
+        return secure;
     }
 }

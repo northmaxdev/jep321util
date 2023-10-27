@@ -29,13 +29,16 @@ import org.junit.jupiter.api.DisplayNameGenerator;
 import java.lang.reflect.Method;
 import java.util.Map;
 
+import static java.util.Map.entry;
+
 public final class CustomDisplayNameGenerator implements DisplayNameGenerator {
 
-    private static final Map<String, String> MAGIC_NESTED_CLASS_NAMES_TO_DISPLAY_NAMES = Map.of(
-            "ToString", "Method: toString"
+    private static final Map<String, String> MAGIC_NESTED_CLASS_NAMES = Map.ofEntries(
+            entry("ToString", "Method: toString()")
     );
-    private static final Map<String, String> MAGIC_METHOD_NAMES_TO_DISPLAY_NAMES = Map.of(
-            "equalsAndHashCode", "equals/hashCode contract"
+
+    private static final Map<String, String> MAGIC_METHOD_NAMES = Map.ofEntries(
+            entry("equals", "equals(Object) and hashCode() contract")
     );
 
     @Override
@@ -43,30 +46,18 @@ public final class CustomDisplayNameGenerator implements DisplayNameGenerator {
         String testClassName = aClass.getSimpleName();
 
         int suffixIndex = testClassName.indexOf("Tests");
-        /*
-         * If the top-level test class name does NOT follow the convention of {TESTED_CLASS_NAME + "Tests"},
-         * simply return it as-is with some kind of visual marker to warn the user.
-         */
-        if (suffixIndex == -1) {
-            return markedAsIs(testClassName);
-        }
-
-        return "Tests for: [" + testClassName.substring(0, suffixIndex) + ']';
+        return (suffixIndex == -1) ? testClassName : ("Class: " + testClassName.substring(0, suffixIndex));
     }
 
     @Override
     public String generateDisplayNameForNestedClass(Class<?> aClass) {
         String nestedClassName = aClass.getSimpleName();
-        return MAGIC_NESTED_CLASS_NAMES_TO_DISPLAY_NAMES.getOrDefault(nestedClassName, markedAsIs(nestedClassName));
+        return MAGIC_NESTED_CLASS_NAMES.getOrDefault(nestedClassName, nestedClassName);
     }
 
     @Override
     public String generateDisplayNameForMethod(Class<?> aClass, Method method) {
         String methodName = method.getName();
-        return MAGIC_METHOD_NAMES_TO_DISPLAY_NAMES.getOrDefault(methodName, markedAsIs(methodName));
-    }
-
-    private static String markedAsIs(String name) {
-        return "<As-is> " + name;
+        return MAGIC_METHOD_NAMES.getOrDefault(methodName, methodName);
     }
 }
