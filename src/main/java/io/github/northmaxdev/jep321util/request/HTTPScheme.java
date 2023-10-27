@@ -41,10 +41,10 @@ public enum HTTPScheme {
      */
     UNSECURE("http");
 
-    private final String strForm;
+    private final String value;
 
-    HTTPScheme(String strForm) {
-        this.strForm = strForm;
+    HTTPScheme(String value) {
+        this.value = value;
     }
 
     /**
@@ -82,6 +82,6 @@ public enum HTTPScheme {
      */
     @Override
     public String toString() {
-        return strForm;
+        return value;
     }
 }
