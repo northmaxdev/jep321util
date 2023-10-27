@@ -54,6 +54,9 @@ public final class URIBuilder {
     private String hostAsStr;
     private Integer port;
     private final List<String> pathSegments;
+    // FIXME:
+    //  Use a Map interface that provides an insertion-order contract, which is promised by URIBuilder::build.
+    //  Right now it works because of its implementation, but it's not enforced in any way by the field's interface type.
     private final Map<String, String> params;
     private final PercentEscaper percentEscaper;
 
