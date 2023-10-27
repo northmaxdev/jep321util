@@ -1,4 +1,4 @@
-# About
+## About
 This project aims to provide a tiny set of modern, high-quality utility classes to complement the native HTTP client API
 introduced in Java 11. The inspiration was initially drawn from a similar set of utilities provided in the
 [Apache HTTP client](https://hc.apache.org/index.html) API, most notably — the `URIBuilder` class. This project's name
@@ -9,10 +9,21 @@ however, that the API does not follow the publication to the T. Instead, it:
 1. Is designed specifically around HTTP (the RFC itself is a lot more universal)
 2. Aims to simplify/streamline things when and where it is reasonable to do so
 
-The library's API was designed to match Java 8 and Java 11 in terms of modernity. For instance, it makes heavy use of
-immutability, static factory methods, and other related "best practices" and conventions.
+## API Design
 
-# Usage Examples
+The `jep321util` library tries its best to stay in touch with the evolution of modern Java's conventions and best practices:
+
+- **Immutability:** all classes in the library are deeply immutable by default *unless noted otherwise.*
+- **Object creation:** all classes in the library are instantiated using primarily static factory methods.
+  These methods use conventional names, such as: `of*`, `valueOf`, `create`, `from*`, `parse`, etc.
+- **Nullability**: `null`s are actively avoided/discouraged. For parameters, if possible, classes attempt to handle `null`s gracefully,
+  such as converting a `null` `Collection` to an empty one instead of throwing a `NullPointerException`. For return values, the library
+  makes heavy use of `Optional` and empty collections. Either way, nullability is generally explicitly documented.
+- **Standard textual representations:** a class that has a standardized "textual representation" (i.e. syntax) will have a `parse(String)`
+  (or an equivalent) static factory method and a `toString` that is "symmetrical" to it (that is, `toString` will return values that are
+  compatible with the `parse` method)
+
+## Usage Examples
 ```java
 /* http://localhost:8080/orders/12345 */
 URI uri = URIBuilder.withLocalhost()
@@ -32,22 +43,8 @@ URI uri = URIBuilder.withValidHost("example.com")
         .build();
 ```
 
-# Building & Installing
+## Building & Installing
 *Coming soon!*
 
-# Branch Information
-This project targets Java LTS releases exclusively, starting from Java 11. For each Java LTS release, there is a 
-separate development branch. The structure is as follows:
-
-| Branch  | Purpose                                                    | Library Version |
-|---------|------------------------------------------------------------|-----------------|
-| `1.x.x` | Latest stable release targeting Java 11                    | 1.x.x           |
-| `2.x.x` | Latest stable release targeting Java 17                    | 2.x.x           |
-| `main`  | Latest stable release of the latest supported Java version | N/A             |
-
-A release of a new Java LTS version does not obsolete any of the previous branches — development between all of them 
-technically continues in parallel. That being said, the latest and the greatest should generally be preferred as 
-**jep321util** always tries to make as much use of the new Java features as possible.
-
-# Licensing
+## Licensing
 See the [license file](LICENSE) for more information.
