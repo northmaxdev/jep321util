@@ -23,18 +23,16 @@
  *
  */
 
-package io.github.northmaxdev.jep321util;
+package io.github.northmaxdev.jep321util.request;
 
 final class HTTPSchemes {
 
     /*
-     * A solution for "illegal forward reference" errors
+     * A solution for "illegal forward reference" issues
      * if trying to declare these constants in HTTPScheme.
      */
     static final String HTTP_VALUE = "http";
     static final String HTTPS_VALUE = "https";
 
-    private HTTPSchemes() {
-        throw new UnsupportedOperationException();
-    }
+    private HTTPSchemes() {}
 }
